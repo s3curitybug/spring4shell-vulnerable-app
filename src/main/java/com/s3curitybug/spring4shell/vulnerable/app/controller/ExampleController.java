@@ -1,5 +1,6 @@
 package com.s3curitybug.spring4shell.vulnerable.app.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class ExampleController {
 
 	}
 
-	@PostMapping("/example")
+	@PostMapping(path = "/example", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String examplePost(ExampleBody body) throws JsonProcessingException {
 
 		return new ObjectMapper().writeValueAsString(body);
